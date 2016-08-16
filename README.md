@@ -13,18 +13,18 @@ Additional rules are:
 * The numbers can't start with 0 or 1
 * Keys * and # can't be used
 
-Quiz enunciations sometimes don't specify it, but it is assumed that repetitions of digits are allowed, if the come form valid piece moves. So, 381-8181 is also a valid number.  
+Quiz enunciations sometimes don't specifically state this, but it is assumed that digit repetitions are allowed, provided that they come form valid piece movements. So, 381-8181 would also be a valid number.  
 
 Also notice that the quiz asks only for the _amount_ of numbers dialed by each piece, not to output the numbers themselves.
 
-Additional features
+##Additional features
 
-I want to propose a sulution with these additional features:
+Given those basic requirements, I want to propose a solution with these additional features:
 
 * It has to be able to output the actual numbers if necessary
 * It can calculate the numbers with or without repetitions
 
-My solution not only does that, but is also generic enough to be easily applicable to other board shapes, or to pieces with movement different from those of chess.
+My solution not only does that, but is also generic enough to be easily applicable to other board shapes, or to pieces from games other than chess.
 
 ##Installation and requirements
 
@@ -34,7 +34,7 @@ If you are using IntelliJ or Eclipse, just import the chesKeyPad directory "as a
 
 ##Running the program
 
-The program has no executable object, just the test, ChessKeyPadSuite. The last few tests compare my calculations agains known, correct quiz solutions.
+The program has no executable object, just the a test suite class in `src/test/scala/ChessKeyPadSuite`. The last few tests compare my calculations agains known, correct quiz solutions.
 
 ##Ideas and strategy used
 
@@ -45,11 +45,11 @@ A traditional solution to the original quiz uses a computing concept variously c
   * therefore, when calculating phone numbers that start with 3 or 9, I should be able to reuse the information that 43-8167 is a valid suffix.
   * this concept can be extrapolated to "numbers of size 2 should reuse the information from numbers size 1", "numbers size 3 should reuse numbers size 2", and so on until the lenght desired.
   
-My requirement of storing the actual number (not just the count) makes things a little more complicated. I don't known if this concept can be efficiently employed in a structure containing the actual digits.
+My additional requirement of storing the actual number (not just the count) makes things a little more complicated. I don't known if this concept can be efficiently employed in a structure containing the actual digits.
 
-I utilize a class called _Hydra_, able to store anything, which is basically a List with many, optional heads instead of just one as in a normal list. This provides some level of re-utilization of tails, akin to the reutilization of phone numbers mentioned above. 
+I utilize a class called _Hydra_, which is basically a List with many, optional heads instead of just one. This provides some level of re-utilization of tails, akin to the reutilization of shorter phone numbers mentioned above. 
 
-I also find useful the concept of start calculating the phone numbers backwards, starting from the last number.
+I also find useful the concept of start the calculation of numbers backwards, starting from the last digit, in order for the _Hydra_ to store a single tail as the shorter number, and multiple heads as the possible, optional prefixes.
 
 Another original idea, is to conceive the _Board_ as an assortment of geometric _Points_, and apply common vector operations to those _Points_ in order to represent _Piece_ movements. I also make a difference between the "moving ability" of a piece versus an actual _Move_, equivalent to an actual new _Point_
 
