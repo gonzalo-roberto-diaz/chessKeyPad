@@ -41,15 +41,5 @@ trait  PointOperations {
     res
   }
 
-  def enrichGivenBoardPieceAndPoint(board: Board, piece: Piece)(point: Point): List[Point] ={
-    val derivates: ListBuffer[Point] = ListBuffer()
-    piece.movAbilities.foreach(ma => {
-      val points = moves(board, point, ma)
-      derivates.appendAll(points)
-    })
-    derivates.toList
-  }
-
-
 
 }
