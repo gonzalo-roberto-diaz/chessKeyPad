@@ -34,18 +34,18 @@ trait KeyPadTrait extends ChessSpecific{
     keyPad.valueOf(point)
   }
 
-  def pointDerivatorByBoardPieceAndPoint(board: Board, piece: Piece) (origin: Point): List[Point] = {
+  def pointDerivFuncByBoardPieceAndPoint(board: Board, piece: Piece)(origin: Point): List[Point] = {
     piece.getSources(board, origin)
   }
 
-  def uncachedKnightDerivator = pointDerivatorByBoardPieceAndPoint(keyPad, knight)(_)
-  def uncachedBishopDerivator = pointDerivatorByBoardPieceAndPoint(keyPad, bishop)(_)
-  def uncachedRookDerivator = pointDerivatorByBoardPieceAndPoint(keyPad, rook)(_)
-  def uncachedPeonDerivator = pointDerivatorByBoardPieceAndPoint(keyPad, peon)(_)
-  def uncachedKingDerivator = pointDerivatorByBoardPieceAndPoint(keyPad, king)(_)
-  def uncachedQueenDerivator = pointDerivatorByBoardPieceAndPoint(keyPad, queen)(_)
+  def uncachedKnightDerivFunc = pointDerivFuncByBoardPieceAndPoint(keyPad, knight)(_)
+  def uncachedBishopDerivFunc = pointDerivFuncByBoardPieceAndPoint(keyPad, bishop)(_)
+  def uncachedRookDerivFunc = pointDerivFuncByBoardPieceAndPoint(keyPad, rook)(_)
+  def uncachedPeonDerivFunc = pointDerivFuncByBoardPieceAndPoint(keyPad, peon)(_)
+  def uncachedKingDerivFunc = pointDerivFuncByBoardPieceAndPoint(keyPad, king)(_)
+  def uncachedQueenDerivFunc = pointDerivFuncByBoardPieceAndPoint(keyPad, queen)(_)
 
-  //cached versions of the derivated functions
+  //cached versions of the deriving functions
   //(they are nor really necessary), but slightly speed up the tests
   val knightCache: Map[Point, List[Point]] = Map()
   val bishopCache: Map[Point, List[Point]] = Map()
@@ -64,12 +64,12 @@ trait KeyPadTrait extends ChessSpecific{
     }
   }
 
-  def knightDerivator = cachedPointDerivatorByBoardPieceAndPoint(knightCache, keyPad, knight)(_)
-  def bishopDerivator = cachedPointDerivatorByBoardPieceAndPoint(bishopCache, keyPad, bishop)(_)
-  def rookDerivator = cachedPointDerivatorByBoardPieceAndPoint(rookCache, keyPad, rook)(_)
-  def peonDerivator = cachedPointDerivatorByBoardPieceAndPoint(peonCache, keyPad, peon)(_)
-  def kingDerivator = cachedPointDerivatorByBoardPieceAndPoint(kingCache, keyPad, king)(_)
-  def queenDerivator = cachedPointDerivatorByBoardPieceAndPoint(queenCache, keyPad, queen)(_)
+  def knightDerivFunc = cachedPointDerivatorByBoardPieceAndPoint(knightCache, keyPad, knight)(_)
+  def bishopDerivFunc = cachedPointDerivatorByBoardPieceAndPoint(bishopCache, keyPad, bishop)(_)
+  def rookDerivFunc = cachedPointDerivatorByBoardPieceAndPoint(rookCache, keyPad, rook)(_)
+  def peonDerivFunc = cachedPointDerivatorByBoardPieceAndPoint(peonCache, keyPad, peon)(_)
+  def kingDerivFunc = cachedPointDerivatorByBoardPieceAndPoint(kingCache, keyPad, king)(_)
+  def queenDerivFunc = cachedPointDerivatorByBoardPieceAndPoint(queenCache, keyPad, queen)(_)
 
 
 
